@@ -64,7 +64,7 @@ Préfixe commun : `/api` (`server.servlet.context-path=/api`).
 - Collection : `postman/AutoLoc.postman_collection.json`.
 - Environnement : `postman/AutoLoc-local.postman_environment.json`.
 - Le dossier `00 Scenario E2E` contient les opérations ordonnées, validations d'erreurs et cascade.
-- Exécution du scénario dans Postman : à confirmer.
+- Exécution automatisée avec Newman le 27/10/2026 : 59 requêtes, 59 scripts de test, 70 assertions, 0 échec.
 - Les tests Python/curl ont validé les sept CRUD, les erreurs 400/404, les suppressions 204, le POST Paiement 405 et la cascade Contrat/Paiement.
 - Swagger UI `/api/swagger-ui.html` et OpenAPI JSON `/api/v3/api-docs` : HTTP 200 vérifiés.
 - Postman sert à envoyer, rejouer et tester les requêtes ; Swagger sert à documenter et explorer l'API.
