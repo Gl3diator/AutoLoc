@@ -1,6 +1,6 @@
 HELP.md
 target/
-.mvn/wrapper/maven-wrapper.jar
+project/.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
@@ -43,4 +43,4 @@ target/
 *.pem
 *.p12
 *.jks
-src/main/resources/application.properties
+project/src/main/resources/application.properties
