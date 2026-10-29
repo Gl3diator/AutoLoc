@@ -62,6 +62,27 @@ public class ReservationController {
         return service.update(id, entity);
     }
 
+    @GetMapping("/{id}/tarif")
+    @Operation(summary = "Calculer le tarif d'une réservation")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Tarif calculé"),
+        @ApiResponse(responseCode = "400", description = "Données invalides"),
+        @ApiResponse(responseCode = "404", description = "Réservation introuvable")
+    })
+    public java.math.BigDecimal calculerTarif(@PathVariable Long id) {
+        return service.calculerTarif(id);
+    }
+
+    @PatchMapping("/{id}/annuler")
+    @Operation(summary = "Annuler une réservation")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Réservation annulée"),
+        @ApiResponse(responseCode = "404", description = "Réservation introuvable")
+    })
+    public Reservation annulerReservation(@PathVariable Long id) {
+        return service.annulerReservation(id);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Supprimer Reservation")
