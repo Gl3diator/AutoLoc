@@ -3,8 +3,11 @@ package tn.esprit.autoloc.service.impl;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import tn.esprit.autoloc.domain.Agence;
 import tn.esprit.autoloc.domain.Vehicule;
 import tn.esprit.autoloc.exception.ResourceNotFoundException;
+import tn.esprit.autoloc.repository.IAgenceRepository;
 import tn.esprit.autoloc.repository.IVehiculeRepository;
 import tn.esprit.autoloc.service.IVehiculeService;
 
@@ -13,6 +16,7 @@ import tn.esprit.autoloc.service.IVehiculeService;
 public class VehiculeServiceImpl implements IVehiculeService {
 
     private final IVehiculeRepository repository;
+    private final IAgenceRepository agenceRepository;
 
     @Override
     public Vehicule create(Vehicule entity) {
@@ -62,6 +66,32 @@ public class VehiculeServiceImpl implements IVehiculeService {
                 && e.getTarifJournalier().signum() < 0) {
             throw new IllegalArgumentException("Tarif négatif interdit");
         }
+    }
+
+    @Override
+    @Transactional
+    public void affecterVehiculeAAgence(Long vehiculeId, Long agenceId) {
+        Vehicule entity = findById(vehiculeId);
+
+        Agence agence = agenceRepository.findById(agenceId)
+            .orElseThrow(() ->
+                new ResourceNotFoundException("Agence", agenceId));
+
+        entity.setAgence(agence);
+        repository.save(entity);
+    }
+
+    @Override
+    @Transactional
+    public void desaffecterVehiculeDeAgence(Long vehiculeId) {
+        Vehicule entity = findById(vehiculeId);
+
+        if (entity.getAgence() == null) {
+            return;
+        }
+
+        entity.setAgence(null);
+        repository.save(entity);
     }
 
     @Override

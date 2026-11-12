@@ -62,6 +62,20 @@ public class EmployeController {
         return service.update(id, entity);
     }
 
+    @PutMapping("/{id}/agence/{agenceId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void affecterEmployeAAgence(
+            @PathVariable Long id,
+            @PathVariable Long agenceId) {
+        service.affecterEmployeAAgence(id, agenceId);
+    }
+
+    @PutMapping("/{id}/agence")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void desaffecterEmployeDeAgence(@PathVariable Long id) {
+        service.desaffecterEmployeDeAgence(id);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Supprimer Employe")

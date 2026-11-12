@@ -3,8 +3,11 @@ package tn.esprit.autoloc.service.impl;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import tn.esprit.autoloc.domain.Agence;
 import tn.esprit.autoloc.domain.Employe;
 import tn.esprit.autoloc.exception.ResourceNotFoundException;
+import tn.esprit.autoloc.repository.IAgenceRepository;
 import tn.esprit.autoloc.repository.IEmployeRepository;
 import tn.esprit.autoloc.service.IEmployeService;
 
@@ -13,6 +16,7 @@ import tn.esprit.autoloc.service.IEmployeService;
 public class EmployeServiceImpl implements IEmployeService {
 
     private final IEmployeRepository repository;
+    private final IAgenceRepository agenceRepository;
 
     @Override
     public Employe create(Employe entity) {
@@ -59,6 +63,32 @@ public class EmployeServiceImpl implements IEmployeService {
                 || e.getRole() == null) {
             throw new IllegalArgumentException("Nom et rôle obligatoires");
         }
+    }
+
+    @Override
+    @Transactional
+    public void affecterEmployeAAgence(Long employeId, Long agenceId) {
+        Employe entity = findById(employeId);
+
+        Agence agence = agenceRepository.findById(agenceId)
+            .orElseThrow(() ->
+                new ResourceNotFoundException("Agence", agenceId));
+
+        entity.setAgence(agence);
+        repository.save(entity);
+    }
+
+    @Override
+    @Transactional
+    public void desaffecterEmployeDeAgence(Long employeId) {
+        Employe entity = findById(employeId);
+
+        if (entity.getAgence() == null) {
+            return;
+        }
+
+        entity.setAgence(null);
+        repository.save(entity);
     }
 
     @Override

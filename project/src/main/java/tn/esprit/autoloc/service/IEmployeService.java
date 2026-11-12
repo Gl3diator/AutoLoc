@@ -8,6 +8,8 @@ public interface IEmployeService {
     Employe findById(Long id);
     List<Employe> findAll();
     Employe update(Long id, Employe entity);
+    void affecterEmployeAAgence(Long employeId, Long agenceId);
+    void desaffecterEmployeDeAgence(Long employeId);
     void deleteById(Long id);
 
     long count();
