@@ -1,4 +1,4 @@
-package tn.esprit.autoloc.dto;
+package tn.esprit.autoloc.web.dto;
 
 import lombok.*;
 import java.time.LocalDate;

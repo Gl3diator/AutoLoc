@@ -1,10 +1,10 @@
-package tn.esprit.autoloc.mapper;
+package tn.esprit.autoloc.web.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 import tn.esprit.autoloc.domain.Client;
-import tn.esprit.autoloc.dto.ClientDTO;
+import tn.esprit.autoloc.web.dto.ClientDTO;
 
 
 @Mapper(componentModel = "spring")

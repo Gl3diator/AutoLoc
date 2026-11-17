@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 
 import tn.esprit.autoloc.domain.*;
-import tn.esprit.autoloc.dto.*;
-import tn.esprit.autoloc.mapper.*;
+import tn.esprit.autoloc.web.dto.*;
+import tn.esprit.autoloc.web.mapper.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 

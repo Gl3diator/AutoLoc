@@ -1,11 +1,11 @@
-package tn.esprit.autoloc.mapper;
+package tn.esprit.autoloc.web.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 import tn.esprit.autoloc.domain.Reservation;
 import tn.esprit.autoloc.domain.Client;
-import tn.esprit.autoloc.dto.ReservationResponseDTO;
+import tn.esprit.autoloc.web.dto.ReservationResponseDTO;
 
 
 @Mapper(componentModel = "spring")
